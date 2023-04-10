@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pegawai;
+use App\Models\PegawaiModel;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -44,7 +44,7 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show(PegawaiModel $pegawai)
     {
         //
     }
@@ -55,7 +55,7 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pegawai $pegawai)
+    public function edit(PegawaiModel $pegawai)
     {
         //
     }
@@ -67,7 +67,7 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $request, PegawaiModel $pegawai)
     {
         //
     }
@@ -78,7 +78,7 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy(PegawaiModel $pegawai)
     {
         //
     }
