@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('films', function (Blueprint $table) {
+        Schema::create('film', function (Blueprint $table) {
             $table->id();
+            $table->string('nama', 50)->nullable();
+            $table->string('id_film', 5)->unique();
+            $table->date('tgl_tayang')->nullable();
+            $table->string('rating')->nullable();
+            $table->string('jml_tayang')->nullable();
+            $table->string('harga')->nullable();
             $table->timestamps();
         });
     }
