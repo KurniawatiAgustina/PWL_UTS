@@ -26,7 +26,7 @@ class FilmController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        
+
         return view('film.create_film')->with('url_form', url('/film'));
     }
 
@@ -38,7 +38,30 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_film' => 'required|string|max:5|unique:film,kode_film',
+            'gambar' => 'required',
+            'nama' => 'required|string|max:50',
+            'tgl_tayang' => 'required|date',
+            'jml_tayang' => 'required',
+            'rating' => 'required',
+            'harga' => 'required'
+        ]);
+
+        $data = FilmModel::create($request->all());
+
+        if ( $request->hasFile('gambar') ) {
+
+            // jika user menginputkan gambar, maka pindahkan gambar tersebut di sutau folder dengan nama aslis dari file gambasr tersebut
+            $request->file('gambar')->move('foto_film/', $request->file('gambar')->getClientOriginalName());
+
+            // jika gamabr sudah berhasil didapatkan, ambil nama dari file gambar tersebut
+            $data->gambar = $request->file('gambar')->getClientOriginalName();
+
+            // lalu simpan gambarnya ke dalam database
+            $data->save();
+        }
+        return redirect('/film')->with('berhasil', 'Data Film Berhasil Ditambahkan');
     }
 
     /**

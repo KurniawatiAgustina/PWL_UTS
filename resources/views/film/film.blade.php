@@ -13,26 +13,41 @@
 
             <a href="{{ url('/film/create') }}" class="btn btn-sm btn-success my-2">Tambah +</a>
 
+            {{-- buat kondisi jika pesan menerima sebuah seesion --}}
+            @if ( $pesan = Session::get('berhasil') )
+
+                {{-- taruh alert di sini --}}
+                <div class="alert alert-success mt-3" role="alert">
+                    {{-- tampilkan pesannya --}}
+                    <b> {{ $pesan }} </b>
+                </div>
+
+            @endif
+
             <table class="table">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>ID Film</th>
+                        <th>Kode Film</th>
                         <th>Gambar</th>
+                        <th>Nama</th>
                         <th>Tanggal Tayang</th>
-                        <th>Rating</th>
                         <th>Jumlah Tayang</th>
-                        <th>Harga</th>
+                        <th>Rating</th>
+                        <th>Harga Tiket</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @if ($data_film->count() > 0)
-                    @foreach($data_flim as $i => $film)
+                    @foreach($data_film as $i => $film)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $film->id_film }}</td>
-                            <td>{{ $film->gambar }}</td>
+                            <td>{{ $film->kode_film }}</td>
+                            <td>
+                                <img src="{{ asset('foto_film/'.$film->gambar) }}" alt="" width="100px">
+                            </td>
                             <td>{{ $film->nama }}</td>
                             <td>{{ $film->tgl_tayang }}</td>
                             <td>{{ $film->jml_tayang }}</td>

@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="gambar_film">Gambar Film</label>
-                    <input type="text" id="gambar_film" class="form-control" name="gambar" value="{{ isset($data_film) ? $data_film->gambar : old('gambar') }}">
+                    <input type="file" id="gambar_film" class="form-control" name="gambar" value="{{ isset($data_film) ? $data_film->gambar : old('gambar') }}">
 
                     @error('gambar')
                         <small class="text-danger">{{ $message }}</small>
@@ -58,7 +58,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="harga_film">Harga</label>
+                    <label for="harga_film">Harga Tiket</label>
                     <input type="text" id="harga_film" class="form-control" name="harga" value="{{ isset($data_film) ? $data_film->harga : old('harga') }}">
 
                     @error('harga')
