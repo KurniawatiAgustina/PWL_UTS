@@ -39,15 +39,11 @@
                             <td>{{ $film->rating }}</td>
                             <td>{{ $film->harga }}</td>
                             <td class="">
-                                <a href="{{ url('') }}" class="btn btn-sm btn-warning">
-                                    Edit
-                                </a>
+                                <a href="{{ url('/film/' . $film->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a>
                                 <form class="d-inline" method="POST" action="{{ url('') }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" href="{{ url('') }}" class="btn btn-sm btn-danger">
-                                        Delete
-                                    </button>
+                                    <button type="submit" href="{{ url('/film/' .$film->id) }}" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>
