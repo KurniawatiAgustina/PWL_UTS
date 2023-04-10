@@ -81,9 +81,11 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function edit(FilmModel $film)
-    {
-        //
+    public function edit( $id ) {
+
+        $data_film = FilmModel::find($id);
+        return view('film.edit', ['data_film' => $data_film, 'url_form' => url('/film/' . $id)]);
+
     }
 
     /**
