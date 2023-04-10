@@ -13,9 +13,12 @@ class FilmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+
+        // method ini berguna untu menampilkan data film yang sudah terinputkan
+        // ambil semua data yang tersimpan di database
+        $data_film = FilmModel::all();
+        return view('film')->with('data_film', $data_film);
     }
 
     /**
