@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('film', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50)->nullable();
             $table->string('id_film', 5)->unique();
+            $table->string('gambar')->nullable();
+            $table->string('nama', 50)->nullable();
             $table->date('tgl_tayang')->nullable();
             $table->string('rating')->nullable();
             $table->string('jml_tayang')->nullable();

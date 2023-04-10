@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
                 $table->id();
-                $table->string('nama', 50)->nullable();
                 $table->string('id_pegawai', 10)->unique();
+                $table->string('nama', 50)->nullable();
                 $table->string('JK', 1)->nullable();
                 $table->string('jabatan', 50)->nullable();
                 $table->string('no_tlp', 13)->nullable();
