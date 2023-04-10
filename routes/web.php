@@ -26,4 +26,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/film', [FilmController::class, 'index'])->name('film');
+
+// membuat route film
+Route::resource('/film', FilmController::class)->parameter('film', 'id');

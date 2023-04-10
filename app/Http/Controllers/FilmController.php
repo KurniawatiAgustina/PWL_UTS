@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
 use App\Models\FilmModel;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,7 @@ class FilmController extends Controller
         // method ini berguna untu menampilkan data film yang sudah terinputkan
         // ambil semua data yang tersimpan di database
         $data_film = FilmModel::all();
-        return view('film')->with('data_film', $data_film);
+        return view('film.film')->with('data_film', $data_film);
     }
 
     /**
@@ -26,9 +25,9 @@ class FilmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        
+        return view('film.create_film')->with('url_form', url('/film'));
     }
 
     /**

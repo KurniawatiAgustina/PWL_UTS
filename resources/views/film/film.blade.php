@@ -11,7 +11,7 @@
 
         <div class="card-body">
 
-            <a href="{{ url('') }}" class="btn btn-sm btn-success my-2">Tambah +</a>
+            <a href="{{ url('/film/create') }}" class="btn btn-sm btn-success my-2">Tambah +</a>
 
             <table class="table">
                 <thead>
