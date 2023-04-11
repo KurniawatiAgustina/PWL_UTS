@@ -18,8 +18,8 @@
             </div> --}}
         </div>
         <div class="card-body">
-            <a href="{{ url('pegawai/create')}}" class="btn btn-sm
-            btn-success">Tambah Data</a>
+            <a href="{{ url('/pegawai/create')}}" class="btn btn-sm
+            btn-success mb-3">Tambah+ </a>
 
             <table class="table table-bordered table-striped">
                 <thead>

@@ -25,8 +25,9 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/dashboard', DashboardController::class)->parameter('dashboard', 'id');
+Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
+Route::resource('/film', FilmController::class)->parameter('film', 'id');

@@ -16,8 +16,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $pegawai = PegawaiModel::all();
-        return view('pegawai.pegawai')
-                        ->with('pegawai',$pegawai);
+        return view('pegawai.pegawai')->with('pegawai',$pegawai);
     }
 
     /**
@@ -27,8 +26,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.create_pegawai')
-        ->with('url_form',url('/pegawai'));
+        return view('pegawai.create_pegawai')->with('url_form',url('/pegawai'));
     }
 
     /**

@@ -14,7 +14,7 @@
               <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-              <a href="#" class="d-block">User name</a>
+              <a href="#" class="d-block">Username</a>
           </div>
       </div>
 
@@ -44,7 +44,7 @@
                   </a>
               </li>
               <li class="nav-item">
-                  <a href="{{ url('/buku') }}" class="nav-link">
+                  <a href="{{ url('/pegawai') }}" class="nav-link">
                       <i class="nav-icon fas fa-book"></i>
                       <p>Data Pegawai</p>
                   </a>
