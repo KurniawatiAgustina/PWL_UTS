@@ -121,8 +121,10 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
+
+        PegawaiModel::where('id', '=', $id)->delete();
+        return redirect('pegawai')->with('succes', 'Data Pegawai Berhasil Dihapus!');
 
     }
 }
