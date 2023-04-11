@@ -14,7 +14,7 @@ class PegawaiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        
+
         $data_pegawai = PegawaiModel::all();
         return view('pegawai.pegawai')->with('data_pegawai', $data_pegawai);
     }
@@ -36,8 +36,21 @@ class PegawaiController extends Controller
      */
     public function store(Request $request) {
 
+        $request ->validate([
+            'nama' => 'required|string|max:50',
+            'kode_pegawai' => 'required|string|max:5',
+            'gambar' => 'required',
+            'jk' => 'required|in:l,p',
+            'jabatan' => 'required|max:50',
+            'no_telp' => 'required|digits_between:6,13',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required|string|max:50',
+            'alamat' => 'required',
 
+        ]);
 
+        $data = PegawaiModel::create($request->except(['_token']));
+        return redirect('/pegawai')->with('success','Data Pegawai Berhasil Ditambhakan!');
     }
 
     /**
