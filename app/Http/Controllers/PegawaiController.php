@@ -13,8 +13,8 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
+        
         $data_pegawai = PegawaiModel::all();
         return view('pegawai.pegawai')->with('data_pegawai', $data_pegawai);
     }
