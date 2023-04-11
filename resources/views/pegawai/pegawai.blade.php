@@ -26,9 +26,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Pegawai</th>
-                    <th>Gambar</th>
                     <th>Nama</th>
-                    <th>kode_pegawai</th>
                     <th>Jenis Kelamin</th>
                     <th>jabatan</th>
                     <th>No Telephone</th>
@@ -40,33 +38,6 @@
             </thead>
             <tbody>
                 @if($data_pegawai->count() > 0)
-                    @foreach ($data_pegawai as $i => $pegawai)
-                        <tr>
-                            <td>{{++$i}}</td>
-                            <td>{{ $pegawai->kode_pegawai}}</td>
-                            <td>{{ $pegawai->gambar }}</td>
-                            <td>
-                                <img src="{{ asset('foto_pegawai/'.$pegawai->gambar) }}" alt="" width="100px">
-                            </td>
-                            <td>{{ $pegawai->nama }}</td>
-                            <td>{{ $pegawai->jk }}</td>
-                            <td>{{ $pegawai->jabatan }}</td>
-                            <td>{{ $pegawai->no_telp }}</td>
-                            <td>{{ $pegawai->tempat_lahir }}</td>
-                            <td>{{ $pegawai->tanggal_lahir }}</td>
-                            <td>{{ $pegawai->alamat }}</td>
-                            <td class="">
-                            {{-- Bikin simbol edit dan delete --}}
-                            <a href="{{ url('/pegawai/'.$p->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
-
-                            <form class="d-inline" method="POST" action="{{ url('/pegawai/'.$p->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" href="{{ url('/pegawai/' .$p->id)}}" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                    @endforeach
-                @else
-                    <tr>
                         <td colspan="9" class="text-center">Data Tidak Ada</td>
                     </tr>
                 @endif
