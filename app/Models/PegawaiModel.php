@@ -10,7 +10,6 @@ class PegawaiModel extends Model
     protected $table = "pegawai";
     protected $fillable = [
         'kode_pegawai',
-        'gambar',
         'nama',
         'jk',
         'jabatan',

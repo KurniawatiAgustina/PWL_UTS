@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pegawai', function (Blueprint $table) {
                 $table->id();
                 $table->string('kode_pegawai', 10)->unique();
-                $table->string('gambar')->nullable();
+                // $table->string('gambar')->nullable();
                 $table->string('nama', 50)->nullable();
                 $table->string('jk', 1)->nullable();
                 $table->string('jabatan', 50)->nullable();
