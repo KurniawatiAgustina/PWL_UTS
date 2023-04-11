@@ -11,7 +11,7 @@
 
         <div class="card-body">
 
-            <a href="{{ url('/film/create') }}" class="btn btn-sm btn-success my-2">Tambah +</a>
+            <a href="{{ url('/film/create') }}" class="mb-3 btn btn-sm btn-success my-2">Tambah+</a>
 
             {{-- buat kondisi jika pesan menerima sebuah seesion --}}
             @if ( $pesan = Session::get('berhasil') )
@@ -68,15 +68,9 @@
                         <td colspan="6" class="text-center">Data Film masih kosong!</td>
                     </tr>
                 @endif
-
                 </tbody>
-
             </table>
-
         </div>
-
     </div>
-    <!-- /.card -->
-
-    </section>
+</section>
 @endsection
