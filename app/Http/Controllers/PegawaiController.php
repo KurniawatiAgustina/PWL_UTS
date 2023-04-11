@@ -49,8 +49,20 @@ class PegawaiController extends Controller
 
         ]);
 
-        $data = PegawaiModel::create($request->except(['_token']));
-        return redirect('/pegawai')->with('success','Data Pegawai Berhasil Ditambahkan!');
+        $data = PegawaiModel::create($request->all());
+
+        if ( $request->hasFile('gambar') ) {
+
+            // jika user menginputkan gambar, maka pindahkan gambar tersebut di sutau folder dengan nama aslis dari file gambasr tersebut
+            $request->file('gambar')->move('foto_pegawai/', $request->file('gambar')->getClientOriginalName());
+
+            // jika gamabr sudah berhasil didapatkan, ambil nama dari file gambar tersebut
+            $data->gambar = $request->file('gambar')->getClientOriginalName();
+
+            // lalu simpan gambarnya ke dalam database
+            $data->save();
+        }
+        return redirect('/pegawai')->with('berhasil', 'Data Pegawai Berhasil Ditambahkan!');
     }
 
     /**
