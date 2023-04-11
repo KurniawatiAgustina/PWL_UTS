@@ -36,9 +36,9 @@ class PegawaiController extends Controller
      */
     public function store(Request $request) {
 
-        $request ->validate([
+        $request->validate([
             'nama' => 'required|string|max:50',
-            'kode_pegawai' => 'required|string|max:5',
+            'kode_pegawai' => 'required|string|max:10',
             'gambar' => 'required',
             'jk' => 'required|in:l,p',
             'jabatan' => 'required|max:50',

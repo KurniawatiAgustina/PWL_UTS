@@ -25,52 +25,54 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>Kode Pegawai</th>
+                    <th>Gambar</th>
                     <th>Nama</th>
-                    <th>id_pegawai</th>
-                    <th>Jk</th>
+                    <th>Jenis Kelamin</th>
                     <th>jabatan</th>
-                    <th>no_telp</th>
+                    <th>No Telephone</th>
                     <th>Tempat Lahir</th>
                     <th>Tanggal lahir</th>
                     <th>Alamat</th>
-                   
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @if($pegawai->count() > 0)
-                @foreach ($pegawai as $i => $p)
-                <tr>
-                  <td>{{++$i}}</td>
-                  <td>{{$p->nama}}</td>
-                  <td>{{$p->id_pegawai}}</td>
-                  <td>{{$p->jk}}</td>
-                  <td>{{$p->jabatan}}</td>
-                  <td>{{$p->tempat_lahir}}</td>
-                  <td>{{$p->tanggal_lahir}}</td>
-                  <td>{{$p->alamat}}</td>
-                  <td>
-                    {{-- Bikin simbol edit dan delete --}}
-                    <a href="{{ url('/pegawai/'.$m->id.'/edit')}}" class="btn btn-sm btn-warning">edit</a>
+                @if($data_pegawai->count() > 0)
+                    @foreach ($data_pegawai as $i => $pegawai)
+                        <tr>
+                            <td>{{++$i}}</td>
+                            <td>{{ $pegawai->kode_pegawai}}</td>
+                            <td>{{ $pegawai->gambar }}</td>
+                            <td>{{ $pegawai->nama }}</td>
+                            <td>{{ $pegawai->jk }}</td>
+                            <td>{{ $pegawai->jabatan }}</td>
+                            <td>{{ $pegawai->tempat_lahir }}</td>
+                            <td>{{ $pegawai->tanggal_lahir }}</td>
+                            <td>{{ $pegawai->alamat }}</td>
+                            <td>
+                                {{-- Bikin simbol edit dan delete --}}
+                                <a href="{{ url('')}}" class="btn btn-sm btn-warning">edit</a>
+                            </td>
+                            <td>
+                                <form class="inline" method="POST" action="{{ url('') }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                            </td>
 
-                    <form class="inline" method="POST" action="{{ url('/pegawai/'.$m->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-                    
+                        </tr>
+                    @endforeach
 
-                </td>
-                
-                </tr>
-                @endforeach
-
-                @else
-                <tr><td colspan="9" class="text-center">Data Tidak Ada</td></tr>
-                    
+                    @else
+                    <tr>
+                        <td colspan="9" class="text-center">Data Tidak Ada</td>
+                    </tr>
                 @endif
-            </tbody>      
-              </table>   
+            </tbody>
+        </table>
     </div>
-    <!-- /.card -->
 
+    <!-- /.card -->
     </section>
 @endsection
