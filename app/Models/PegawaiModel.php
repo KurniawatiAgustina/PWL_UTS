@@ -9,13 +9,14 @@ class PegawaiModel extends Model
 {
     protected $table = "pegawai";
     protected $fillable = [
-        'nama', 
-        'id_pegawai', 
-        'JK', 
+        'kode_pegawai',
+        'gambar',
+        'nama',
+        'jk',
         'jabatan',
         'no_telp',
-        'tempat_lahir', 
-        'tanggal_lahir', 
+        'tanggal_lahir',
+        'tempat_lahir',
         'alamat'
     ];
     use HasFactory;

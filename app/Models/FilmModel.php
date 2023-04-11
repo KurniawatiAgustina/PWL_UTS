@@ -11,11 +11,12 @@ class FilmModel extends Model
 
     protected $table = "film";
     protected $fillable = [
+        'kode_film',
+        'gambar',
         'nama',
-        'id_film',
         'tgl_tayang',
-        'rating',
         'jml_tayang',
+        'rating',
         'harga',
     ];
 }
