@@ -70,8 +70,10 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
+
+        $data_pegawai = PegawaiModel::find($id);
+        return view('pegawai.edit', ['data_pegawai' => $data_pegawai, 'url_form' => url('/pegawai/' . $id)]);
 
     }
 
