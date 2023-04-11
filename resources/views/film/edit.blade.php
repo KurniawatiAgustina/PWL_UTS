@@ -25,13 +25,14 @@
                         </div>
                         <img src="{{ asset('foto_film/' . $data_film->gambar) }}" alt="" width="100px" height="100px">
 
-                        <input type="file" id="gambar_film" class="mt-3 form-control" name="gambar" value="{{ isset($data_film) ? $data_film->gambar : old('gambar') }}">
                     @endif
 
+                    <input type="file" id="gambar_film" class="mt-3 form-control" name="gambar" value="{{ isset($data_film) ? $data_film->gambar : old('gambar') }}">
 
                     @error('gambar')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
+
                 </div>
                 <div class="form-group">
                     <label for="nama_film">Nama Film</label>

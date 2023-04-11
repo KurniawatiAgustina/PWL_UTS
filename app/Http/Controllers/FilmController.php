@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FilmModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class FilmController extends Controller
 {
@@ -95,9 +96,32 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FilmModel $film)
-    {
-        //
+    public function update(Request $request, $id) {
+
+        $request->validate([
+            'kode_film' => 'required|string|max:5|unique:film,kode_film,' . $id,
+            'gambar' => 'required',
+            'nama' => 'required|string|max:50',
+            'tgl_tayang' => 'required|date',
+            'jml_tayang' => 'required',
+            'rating' => 'required',
+            'harga' => 'required'
+        ]);
+
+        // $data = FilmModel::where('id', $id)->update($request->except('_token', '_method'));
+        $data = FilmModel::find($id);
+
+        if ( $request->hasFile('gambar') ) {
+
+            // jika user menginputkan gambar, maka pindahkan gambar tersebut di sutau folder dengan nama aslis dari file gambasr tersebut
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $file->move('foto_film/', $extention);
+            $data->gambar = $extention;
+        }
+
+        $data->update();
+        return redirect('/film')->with('berhasil', 'Data Film Berhasil Dirubah!');
     }
 
     /**
