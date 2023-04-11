@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PegawaiController;
+use App\Models\PegawaiModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 Auth::routes();
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai','id');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
