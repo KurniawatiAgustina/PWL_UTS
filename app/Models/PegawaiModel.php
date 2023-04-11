@@ -18,6 +18,7 @@ class PegawaiModel extends Model
         'tanggal_lahir',
         'tempat_lahir',
         'alamat'
+       
     ];
     use HasFactory;
 }

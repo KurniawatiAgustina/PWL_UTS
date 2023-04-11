@@ -26,10 +26,9 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Pegawai</th>
-                    <th>Gambar</th>
                     <th>Nama</th>
-                    <th>kode_pegawai</th>
-                    <th>Jk</th>
+                    <th>Foto Pegawai</th>
+                    <th>Jenis Kelamin</th>
                     <th>jabatan</th>
                     <th>No Telephone</th>
                     <th>Tempat Lahir</th>
@@ -39,27 +38,36 @@
                 </tr>
             </thead>
             <tbody>
-                @if($pegawai->count() > 0)
-                @foreach ($pegawai as $i => $p)
+                @if($data_pegawai->count() > 0)
+                @foreach ($data_pegawai as $i => $pegawai)
                 <tr>
-                  <td>{{++$i}}</td>
-                  <td>{{$p->nama}}</td>
-                  <td>{{$p->kode_pegawai}}</td>
-                  <td>{{$p->jk}}</td>
-                  <td>{{$p->jabatan}}</td>
-                  <td>{{$p->no_telp}}</td>
-                  <td>{{$p->tempat_lahir}}</td>
-                  <td>{{$p->tanggal_lahir}}</td>
-                  <td>{{$p->alamat}}</td>
+                    <td>{{++$i}}</td>
+                    <td>{{ $pegawai->kode_pegawai}}</td>
+                    <td>{{ $pegawai->nama }}</td>
+                    <td>
+                        <img src="{{ asset('foto_pegawai/'.$pegawai->gambar) }}" alt="" width="100px">
+                    </td>
+                    
+                    <td>{{ $pegawai->jk }}</td>
+                    <td>{{ $pegawai->jabatan }}</td>
+                    <td>{{ $pegawai->no_telp}}</td>
+                    <td>{{ $pegawai->tempat_lahir }}</td>
+                    <td>{{ $pegawai->tanggal_lahir }}</td>
+                    <td>{{ $pegawai->alamat }}</td>
+                    <td>{{ $pegawai->aksi }}</td>
+
+                   
                   <td class="">
                     {{-- Bikin simbol edit dan delete --}}
-                    <a href="{{ url('/pegawai/'.$p->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ url('/pegawai/'.$pegawai->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
 
-                    <form class="d-inline" method="POST" action="{{ url('/pegawai/'.$p->id) }}">
+                    <form class="d-inline" method="POST" action="{{ url('/pegawai/'.$pegawai->id) }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" href="{{ url('/pegawai/' .$p->id)}}" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" href="{{ url('/pegawai/' .$pegawai->id)}}" class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    @endforeach
+
 
                     @else
                     <tr>
