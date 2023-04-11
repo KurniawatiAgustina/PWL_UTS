@@ -130,8 +130,9 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FilmModel $film)
-    {
-        //
+    public function destroy($id) {
+
+        FilmModel::where('id', $id)->delete();
+        return redirect('/film')->with('berhasil', 'Data Film Berhasil Dihapus!');
     }
 }
