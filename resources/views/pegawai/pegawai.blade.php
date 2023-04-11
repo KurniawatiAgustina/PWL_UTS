@@ -43,7 +43,9 @@
                         <tr>
                             <td>{{++$i}}</td>
                             <td>{{ $pegawai->kode_pegawai}}</td>
-                            <td>{{ $pegawai->gambar }}</td>
+                            <td>
+                                <img src="{{ asset('foto_pegawai/'.$pegawai->gambar) }}" alt="" width="100px">
+                            </td>
                             <td>{{ $pegawai->nama }}</td>
                             <td>{{ $pegawai->jk }}</td>
                             <td>{{ $pegawai->jabatan }}</td>
