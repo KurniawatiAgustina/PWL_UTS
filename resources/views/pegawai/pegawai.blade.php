@@ -28,12 +28,8 @@
                     <th>Kode Pegawai</th>
                     <th>Gambar</th>
                     <th>Nama</th>
-<<<<<<< HEAD
                     <th>kode_pegawai</th>
                     <th>Jk</th>
-=======
-                    <th>Jenis Kelamin</th>
->>>>>>> a6b782670498251959b048916c2fb056e13f2800
                     <th>jabatan</th>
                     <th>No Telephone</th>
                     <th>Tempat Lahir</th>
@@ -43,7 +39,6 @@
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
                 @if($pegawai->count() > 0)
                 @foreach ($pegawai as $i => $p)
                 <tr>
@@ -65,35 +60,6 @@
                         @method('DELETE')
                         <button type="submit" href="{{ url('/pegawai/' .$p->id)}}" class="btn btn-sm btn-danger">Delete</button>
                     </form>
-=======
-                @if($data_pegawai->count() > 0)
-                    @foreach ($data_pegawai as $i => $pegawai)
-                        <tr>
-                            <td>{{++$i}}</td>
-                            <td>{{ $pegawai->kode_pegawai}}</td>
-                            <td>
-                                <img src="{{ asset('foto_pegawai/'.$pegawai->gambar) }}" alt="" width="100px">
-                            </td>
-                            <td>{{ $pegawai->nama }}</td>
-                            <td>{{ $pegawai->jk }}</td>
-                            <td>{{ $pegawai->jabatan }}</td>
-                            <td>{{ $pegawai->tempat_lahir }}</td>
-                            <td>{{ $pegawai->tanggal_lahir }}</td>
-                            <td>{{ $pegawai->alamat }}</td>
-                            <td>
-                                {{-- Bikin simbol edit dan delete --}}
-                                <a href="{{ url('')}}" class="btn btn-sm btn-warning">edit</a>
-                            </td>
-                            <td>
-                                <form class="inline" method="POST" action="{{ url('') }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-                            </td>
-
-                        </tr>
-                    @endforeach
->>>>>>> a6b782670498251959b048916c2fb056e13f2800
 
                     @else
                     <tr>
@@ -103,11 +69,8 @@
             </tbody>
         </table>
     </div>
-<<<<<<< HEAD
 </div>
     <!-- /.card -->
-=======
->>>>>>> a6b782670498251959b048916c2fb056e13f2800
 
     <!-- /.card -->
     </section>
