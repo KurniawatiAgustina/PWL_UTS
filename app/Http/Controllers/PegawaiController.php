@@ -50,7 +50,7 @@ class PegawaiController extends Controller
         ]);
 
         $data = PegawaiModel::create($request->except(['_token']));
-        return redirect('/pegawai')->with('success','Data Pegawai Berhasil Ditambhakan!');
+        return redirect('/pegawai')->with('success','Data Pegawai Berhasil Ditambahkan!');
     }
 
     /**
@@ -84,10 +84,35 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
 
+        $request ->validate([
+            'nama' => 'required|string|max:50',
+            'kode_pegawai' => 'required|string|max:5',
+            'gambar' => 'required',
+            'jk' => 'required|in:l,p',
+            'jabatan' => 'required|max:50',
+            'no_telp' => 'required|digits_between:6,13',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required|string|max:50',
+            'alamat' => 'required',
 
+        ]);
+
+        // $data = FilmModel::where('id', $id)->update($request->except('_token', '_method'));
+        $data = PegawaiModel::find($id);
+
+        if ( $request->hasFile('gambar') ) {
+
+            // jika user menginputkan gambar, maka pindahkan gambar tersebut di sutau folder dengan nama aslis dari file gambasr tersebut
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $file->move('foto_pegawai/', $extention);
+            $data->gambar = $extention;
+        }
+
+        $data->update();
+        return redirect('/pegawai')->with('berhasil', 'Data Pegawai Berhasil Dirubah!');
     }
 
     /**
