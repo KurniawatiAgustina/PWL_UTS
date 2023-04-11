@@ -37,9 +37,9 @@ class PegawaiController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'nama' => 'required|string|max:50',
             'kode_pegawai' => 'required|string|max:10',
             'gambar' => 'required',
+            'nama' => 'required|string|max:50',
             'jk' => 'required|in:l,p',
             'jabatan' => 'required|max:50',
             'no_telp' => 'required|digits_between:6,13',
@@ -64,14 +64,6 @@ class PegawaiController extends Controller
         }
         return redirect('/pegawai')->with('berhasil', 'Data Pegawai Berhasil Ditambahkan!');
     }
-
-
-    //     $data = PegawaiModel::create($request->except(['_token']));
-    //     return redirect('pegawai')
-    //         ->with('success','pegawai berhasil ditambhakan');
-
-        
-    // }
 
     /**
      * Display the specified resource.

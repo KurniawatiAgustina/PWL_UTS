@@ -7,19 +7,22 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Pegawai</h3>
-
-            {{-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widge="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widge="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div> --}}
         </div>
+
         <div class="card-body">
             <a href="{{ url('/pegawai/create')}}" class="btn btn-sm
             btn-success mb-3">Tambah+</a>
+
+            {{-- buat kondisi jika pesan menerima sebuah seesion --}}
+            @if ( $pesan = Session::get('berhasil') )
+
+                {{-- taruh alert di sini --}}
+                <div class="alert alert-success mt-3" role="alert">
+                    {{-- tampilkan pesannya --}}
+                    <b> {{ $pesan }} </b>
+                </div>
+
+            @endif
 
             <table class="table">
                 <thead>
