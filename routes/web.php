@@ -18,16 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
-Route::resource('/dashboard', DashboardController::class)->parameter('dashboard', 'id');
-Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
-Route::resource('/film', FilmController::class)->parameter('film', 'id');
+Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::middleware(['auth'])->group( function() {
+
+    Route::resource('/dashboard', DashboardController::class)->parameter('dashboard', 'id');
+    Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
+    Route::resource('/film', FilmController::class)->parameter('film', 'id');
+
+} );
