@@ -1,28 +1,27 @@
 @extends('layouts.template')
 
 @section('content')
-{{-- <section class="content"> --}}
-    <!--Default box-->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Pegawai</h3>
         </div>
-
         <div class="card-body">
             <form method="POST" action="{{ $url_form }}" enctype="multipart/form-data">
                 @csrf
-                {!! (isset($data_pegawai)) ? method_field('PUT') : '' !!}
+                {!! isset($data_pegawai) ? method_field('PUT') : '' !!}
                 <div class="form-group">
                     <label for="kode_pegawai">Kode Pegawai</label>
-                    <input id="kode_pegawai" class="form-control @error('kode_pegawai') is-invalid @enderror" value="{{ isset($data_pegawai)? $data_pegawai->kode_pegawai: old('kode_pegawai') }}" name="kode_pegawai" type="text" />
+                    <input type="text" id="kode_pegawai" class="form-control" name="kode_pegawai" value="{{ isset($data_pegawai) ? $data_pegawai->kode_pegawai : old('kode_pegawai') }}">
 
-                    @error('nama')
-                        <span class="error invalid-feedback">{{ $message }} </span>
+                    @error('kode_pegawai')
+                        <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
+                
+
                 <div class="form-group">
-                    <label for="nama">Nama</label>
+                    <label for="nama">Nama </label>
                     <input id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ isset($data_pegawai)? $data_pegawai->nama: old('nama') }}" name="nama" type="text" />
 
                     @error('nama')
@@ -30,12 +29,13 @@
                     @enderror
                 </div>
 
+
                 <div class="form-group">
                     <label for="jk">Jenis Kelamin</label>
                     <select id="jk" class="form-control" @error('jk') is-invalid @enderror" value="{{ isset($data_pegawai)? $data_pegawai->jk:old('jk') }}" name="jk">
-                        <option selected>--Pilih Jenis Kelamin--</option>
-                        <option value="Laki-Laki">Laki - laki</option>
-                        <option value="Perempuan">Perempuan</option>
+                        
+                        <option value="Laki-Laki" @isset($data_pegawai) @selected($data_pegawai->jk == 'Laki-Laki') @endisset>Laki-laki</option>
+                        <option value="Perempuan" @isset($data_pegawai) @selected($data_pegawai->jk == 'Perempuan') @endisset>Perempuan</option>
                     </select>
                     @error('jk')
                         <span class="error invalid-feedback">{{ $message }} </span>
@@ -44,7 +44,7 @@
 
                 <div class="form-group">
                     <label for="jabatan">Jabatan</label>
-                    <input id="jabatan" class="form-control @error('jabatan') is-invalid @enderror" value="{{ isset($data_pegawai) ? $data_pegawai->jabatan:old('jabatan') }}" name="jabatan" type="text"/>
+                    <input id="jabatan" class="form-control @error('jabatan') is-invalid @enderror" value="{{ isset($data_pegawai) ? $data_pegawai->jabatan : old('jabatan') }}" name="jabatan" type="text"/>
 
                     @error('jabatan')
                       <span class="error invalid-feedback">{{ $message }} </span>
@@ -91,5 +91,11 @@
                 </div>
             </form>
         </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!-- /.card-footer-->
     </div>
+    <!-- /.card -->
 @endsection
