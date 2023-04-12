@@ -15,7 +15,7 @@
 
             <div class="row g-3 align-items-center">
                 <div class="col-auto">
-    
+
                     {{-- membuat form untuk melakukan request, yaitu mengambil data berdasarkan asil pencarian --}}
                     <form action="/pegawai" method="GET">
                         <input type="search" id="search-data" name="search" class="form-control" placeholder="Cari nama pegawai...">
@@ -53,7 +53,7 @@
                 @if ($data_pegawai->count() > 0)
                     @foreach($data_pegawai as $i => $pegawai)
                         <tr>
-                            <td>{{ $i +$data_pegawai->firstItem()}}</td>
+                            <td>{{ $i + $data_pegawai->firstItem() }}</td>
                             <td>{{ $pegawai->kode_pegawai }}</td>
                             <td>{{ $pegawai->nama }}</td>
                             <td>{{ $pegawai->jk }}</td>
@@ -79,7 +79,9 @@
                 @endif
             </tbody>
         </table>
-        {{$data_pegawai->links()}}
+
+        {{ $data_pegawai->links() }}
+
     </div>
 </div>
     <!-- /.card -->

@@ -13,11 +13,18 @@ class FilmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
 
-        // method ini berguna untu menampilkan data film yang sudah terinputkan
-        // ambil semua data yang tersimpan di database
-        $data_film = FilmModel::all();
+        if ( $request->has('search')) { // jika request menangkap request berupa 'search'
+
+            // cari data berdasarkan nama yang dicari
+            $data_film = FilmModel::where('nama', 'LIKE', '%' .$request->search. '%')->paginate(3);
+        } else {
+
+            // jika tidak, tampilkan semua data
+            $data_film = FilmModel::paginate(3);
+        }
+
         return view('film.film')->with('data_film', $data_film);
     }
 

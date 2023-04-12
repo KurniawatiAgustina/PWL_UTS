@@ -24,6 +24,7 @@ class PegawaiController extends Controller
             // jika tidak, tampilkan semua data
             $data_pegawai = PegawaiModel::paginate(3);
         }
+
         return view('pegawai.pegawai')->with('data_pegawai', $data_pegawai);
     }
 
@@ -46,7 +47,7 @@ class PegawaiController extends Controller
 
         $request->validate([
             'kode_pegawai' => 'required|string|max:10',
-            
+
             'nama' => 'required|string|max:50',
             'jk' => 'required|in:Laki-Laki,Perempuan',
             'jabatan' => 'required|max:50',

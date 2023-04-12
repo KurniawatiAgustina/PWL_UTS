@@ -13,6 +13,16 @@
 
             <a href="{{ url('/film/create') }}" class="mb-3 btn btn-sm btn-success my-2">Tambah+</a>
 
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+
+                    {{-- membuat form untuk melakukan request, yaitu mengambil data berdasarkan asil pencarian --}}
+                    <form action="/film" method="GET">
+                        <input type="search" id="search-data" name="search" class="form-control" placeholder="Cari film...">
+                    </form>
+                </div>
+            </div>
+
             {{-- buat kondisi jika pesan menerima sebuah seesion --}}
             @if ( $pesan = Session::get('berhasil') )
 
@@ -43,7 +53,7 @@
                     @if ($data_film->count() > 0)
                     @foreach($data_film as $i => $film)
                         <tr>
-                            <td>{{ ++$i }}</td>
+                            <td>{{ $i + $data_film->firstItem() }}</td>
                             <td>{{ $film->kode_film }}</td>
                             <td>
                                 <img src="{{ asset('foto_film/'.$film->gambar) }}" alt="" width="100px">
@@ -70,6 +80,9 @@
                 @endif
                 </tbody>
             </table>
+
+            {{ $data_film->links() }}
+
         </div>
     </div>
 </section>
