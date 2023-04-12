@@ -115,12 +115,24 @@ class FilmController extends Controller
 
             // jika user menginputkan gambar, maka pindahkan gambar tersebut di sutau folder dengan nama aslis dari file gambasr tersebut
             $file = $request->file('gambar');
-            $extention = $file->getClientOriginalExtension();
+            $extention = $file->getClientOriginalName();
             $file->move('foto_film/', $extention);
             $data->gambar = $extention;
         }
 
-        $data->update();
+        // $data->update( [
+        //     'kode_film' => $data->kode_film,
+        //     'gambar' => $data->gambar,
+        //     'nama' => $data->nama,
+        //     'tgl_tayang' => $data->tgl_tayang,
+        //     'jml_tayang' => $data->jml_tayang,
+        //     'rating' => $data->rating,
+        //     'harga' => $data->harga,
+        // ] );
+
+        $data->save();
+
+        FilmModel::where('id', $id)->update( $request->except('_token', '_method') );
         return redirect('/film')->with('berhasil', 'Data Film Berhasil Dirubah!');
     }
 

@@ -13,7 +13,7 @@
             <a href="{{ url('/pegawai/create')}}" class="btn btn-sm
             btn-success mb-3">Tambah+</a>
 
-            {{-- buat kondisi jika pesan menerima sebuah seesion --}}
+            `{{-- buat kondisi jika pesan menerima sebuah seesion --}}
             @if ( $pesan = Session::get('berhasil') )
 
                 {{-- taruh alert di sini --}}
