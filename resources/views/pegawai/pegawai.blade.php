@@ -45,7 +45,6 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $pegawai->kode_pegawai }}</td>
-                           
                             <td>{{ $pegawai->nama }}</td>
                             <td>{{ $pegawai->jk }}</td>
                             <td>{{ $pegawai->jabatan }}</td>

@@ -120,19 +120,7 @@ class FilmController extends Controller
             $data->gambar = $extention;
         }
 
-        // $data->update( [
-        //     'kode_film' => $data->kode_film,
-        //     'gambar' => $data->gambar,
-        //     'nama' => $data->nama,
-        //     'tgl_tayang' => $data->tgl_tayang,
-        //     'jml_tayang' => $data->jml_tayang,
-        //     'rating' => $data->rating,
-        //     'harga' => $data->harga,
-        // ] );
-
-        $data->save();
-
-        FilmModel::where('id', $id)->update( $request->except('_token', '_method') );
+        $data->update();
         return redirect('/film')->with('berhasil', 'Data Film Berhasil Dirubah!');
     }
 
