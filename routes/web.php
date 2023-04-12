@@ -25,8 +25,9 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){
-// Route::get('/',[App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::resource('/dashboard', DashboardController::class)->parameter('dashboard', 'id');
-Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
-Route::resource('/film', FilmController::class)->parameter('film', 'id');
+
+    Route::redirect('/', '/dashboard', 301)->name('dashboard');
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
+    Route::resource('/film', FilmController::class)->parameter('film', 'id');
 });

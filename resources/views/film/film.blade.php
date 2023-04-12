@@ -51,33 +51,33 @@
                 <tbody>
 
                     @if ($data_film->count() > 0)
-                    @foreach($data_film as $i => $film)
+                        @foreach($data_film as $i => $film)
+                            <tr>
+                                <td>{{ $i + $data_film->firstItem() }}</td>
+                                <td>{{ $film->kode_film }}</td>
+                                <td>
+                                    <img src="{{ asset('foto_film/'.$film->gambar) }}" alt="" width="100px">
+                                </td>
+                                <td>{{ $film->nama }}</td>
+                                <td>{{ $film->tgl_tayang }}</td>
+                                <td>{{ $film->jml_tayang }}</td>
+                                <td>{{ $film->rating }}</td>
+                                <td>{{ $film->harga }}</td>
+                                <td class="">
+                                    <a href="{{ url('/film/' . $film->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form class="d-inline" method="POST" action="{{ url('/film/' . $film->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" href="{{ url('/film/' .$film->id) }}" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $i + $data_film->firstItem() }}</td>
-                            <td>{{ $film->kode_film }}</td>
-                            <td>
-                                <img src="{{ asset('foto_film/'.$film->gambar) }}" alt="" width="100px">
-                            </td>
-                            <td>{{ $film->nama }}</td>
-                            <td>{{ $film->tgl_tayang }}</td>
-                            <td>{{ $film->jml_tayang }}</td>
-                            <td>{{ $film->rating }}</td>
-                            <td>{{ $film->harga }}</td>
-                            <td class="">
-                                <a href="{{ url('/film/' . $film->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form class="d-inline" method="POST" action="{{ url('/film/' . $film->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" href="{{ url('/film/' .$film->id) }}" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
+                            <td colspan="6" class="text-center">Data Film masih kosong!</td>
                         </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="6" class="text-center">Data Film masih kosong!</td>
-                    </tr>
-                @endif
+                    @endif
                 </tbody>
             </table>
 
