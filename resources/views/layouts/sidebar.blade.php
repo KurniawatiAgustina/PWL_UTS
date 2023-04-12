@@ -8,6 +8,9 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
+    <style>
+        .main-sidebar { background-color: rgb(57, 111, 165) !important}
+    </style>
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
