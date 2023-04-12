@@ -13,6 +13,16 @@
             <a href="{{ url('/pegawai/create')}}" class="btn btn-sm
             btn-success mb-3">Tambah+</a>
 
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+    
+                    {{-- membuat form untuk melakukan request, yaitu mengambil data berdasarkan asil pencarian --}}
+                    <form action="/pegawai" method="GET">
+                        <input type="search" id="search-data" name="search" class="form-control" placeholder="Cari nama pegawai...">
+                    </form>
+                </div>
+            </div>
+
             `{{-- buat kondisi jika pesan menerima sebuah seesion --}}
             @if ( $pesan = Session::get('berhasil') )
 
@@ -43,7 +53,7 @@
                 @if ($data_pegawai->count() > 0)
                     @foreach($data_pegawai as $i => $pegawai)
                         <tr>
-                            <td>{{ ++$i }}</td>
+                            <td>{{ $i +$data_pegawai->firstItem()}}</td>
                             <td>{{ $pegawai->kode_pegawai }}</td>
                             <td>{{ $pegawai->nama }}</td>
                             <td>{{ $pegawai->jk }}</td>
@@ -69,6 +79,7 @@
                 @endif
             </tbody>
         </table>
+        {{$data_pegawai->links()}}
     </div>
 </div>
     <!-- /.card -->

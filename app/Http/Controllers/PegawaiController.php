@@ -13,9 +13,17 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index (Request $request) {
 
-        $data_pegawai = PegawaiModel::all();
+        if ( $request->has('search')) { // jika request menangkap request berupa 'search'
+
+            // cari data berdasarkan nama yang dicari
+            $data_pegawai = PegawaiModel::where('nama', 'LIKE', '%' .$request->search. '%')->paginate(3);
+        } else {
+
+            // jika tidak, tampilkan semua data
+            $data_pegawai = PegawaiModel::paginate(3);
+        }
         return view('pegawai.pegawai')->with('data_pegawai', $data_pegawai);
     }
 
