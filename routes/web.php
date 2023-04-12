@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FilmController;
@@ -18,13 +21,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::middleware(['auth'])->group( function() {
-
-    Route::resource('/dashboard', DashboardController::class)->parameter('dashboard', 'id');
-    Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
-    Route::resource('/film', FilmController::class)->parameter('film', 'id');
-
-} );
+Auth::routes();
+Route::middleware(['auth'])->group(function(){
+// Route::get('/',[App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::resource('/dashboard', DashboardController::class)->parameter('dashboard', 'id');
+Route::resource('/pegawai', PegawaiController::class)->parameter('pegawai', 'id');
+Route::resource('/film', FilmController::class)->parameter('film', 'id');
+});
