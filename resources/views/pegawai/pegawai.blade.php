@@ -29,7 +29,6 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Pegawai</th>
-                    <th>Foto Pegawai</th>
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
                     <th>jabatan</th>
@@ -45,10 +44,8 @@
                     @foreach($data_pegawai as $i => $pegawai)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $film->kode_film }}</td>
-                            <td>
-                                <img src="{{ asset('foto_pegawai/'.$pegawai->gambar) }}" alt="" width="100px">
-                            </td>
+                            <td>{{ $pegawai->kode_pegawai }}</td>
+                           
                             <td>{{ $pegawai->nama }}</td>
                             <td>{{ $pegawai->jk }}</td>
                             <td>{{ $pegawai->jabatan }}</td>
@@ -68,7 +65,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="6" class="text-center">Data Film masih kosong!</td>
+                        <td colspan="6" class="text-center">Data Pegawai masih kosong!</td>
                     </tr>
                 @endif
             </tbody>
