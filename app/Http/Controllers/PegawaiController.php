@@ -96,7 +96,7 @@ class PegawaiController extends Controller
 
         $request ->validate([
             'nama' => 'required|string|max:50',
-            'kode_pegawai' => 'required|string|max:10|unique:pegawai,kode_pegawai',
+            'kode_pegawai' => 'required|string|max:10|unique:pegawai,kode_pegawai,'.$id,
             'jk' => 'required|in:Laki-Laki,Perempuan',
             'jabatan' => 'required|max:50',
             'no_telp' => 'required|digits_between:6,13',
