@@ -16,7 +16,7 @@
                     <label for="kode_pegawai">Kode Pegawai</label>
                     <input id="kode_pegawai" class="form-control @error('kode_pegawai') is-invalid @enderror" value="{{ isset($data_pegawai)? $data_pegawai->kode_pegawai: old('kode_pegawai') }}" name="kode_pegawai" type="text" />
 
-                    @error('nama')
+                    @error('kode_pegawai')
                         <span class="error invalid-feedback">{{ $message }} </span>
                     @enderror
                 </div>

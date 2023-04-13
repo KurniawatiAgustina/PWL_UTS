@@ -107,7 +107,6 @@ class FilmController extends Controller
 
         $request->validate([
             'kode_film' => 'required|string|max:5|unique:film,kode_film,' . $id,
-            'gambar' => 'required',
             'nama' => 'required|string|max:50',
             'tgl_tayang' => 'required|date',
             'jml_tayang' => 'required',
@@ -126,6 +125,8 @@ class FilmController extends Controller
             $file->move('foto_film/', $extention);
             $data->gambar = $extention;
         }
+
+        $data->kode_film = $request->kode_film;
 
         $data->update();
         return redirect('/film')->with('berhasil', 'Data Film Berhasil Dirubah!');

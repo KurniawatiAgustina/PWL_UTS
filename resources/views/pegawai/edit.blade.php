@@ -17,9 +17,7 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-
                 
-
                 <div class="form-group">
                     <label for="nama">Nama </label>
                     <input id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ isset($data_pegawai)? $data_pegawai->nama: old('nama') }}" name="nama" type="text" />

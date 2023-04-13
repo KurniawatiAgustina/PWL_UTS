@@ -46,8 +46,7 @@ class PegawaiController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'kode_pegawai' => 'required|string|max:10',
-
+            'kode_pegawai' => 'required|string|max:10|unique:pegawai,kode_pegawai',
             'nama' => 'required|string|max:50',
             'jk' => 'required|in:Laki-Laki,Perempuan',
             'jabatan' => 'required|max:50',
@@ -59,7 +58,6 @@ class PegawaiController extends Controller
         ]);
 
         $data = PegawaiModel::create($request->all());
-
         return redirect('/pegawai')->with('berhasil', 'Data Pegawai Berhasil Ditambahkan!');
     }
 
@@ -98,7 +96,7 @@ class PegawaiController extends Controller
 
         $request ->validate([
             'nama' => 'required|string|max:50',
-            'kode_pegawai' => 'required|string|max:5',
+            'kode_pegawai' => 'required|string|max:10|unique:pegawai,kode_pegawai',
             'jk' => 'required|in:Laki-Laki,Perempuan',
             'jabatan' => 'required|max:50',
             'no_telp' => 'required|digits_between:6,13',
@@ -121,7 +119,7 @@ class PegawaiController extends Controller
     public function destroy($id) {
 
         PegawaiModel::where('id', '=', $id)->delete();
-        return redirect('pegawai')->with('succes', 'Data Pegawai Berhasil Dihapus!');
+        return redirect('pegawai')->with('berhasil', 'Data Pegawai Berhasil Dihapus!');
 
     }
 }
