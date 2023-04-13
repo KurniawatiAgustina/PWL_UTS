@@ -9,7 +9,7 @@
         <div class="card-body">
             <form method="POST" action="{{ $url_form }}" enctype="multipart/form-data">
                 @csrf
-                {!! isset($data_pegawai)? method_field('PUT') : '' !!}
+                {!! isset($data_pegawai) ? method_field('PUT') : '' !!}
                 <div class="form-group">
                     <label for="kode_pegawai">Kode Pegawai</label>
                     <input id="kode_pegawai" class="form-control" value="{{ isset($data_pegawai) ? $data_pegawai->kode_pegawai: old('kode_pegawai') }}" name="kode_pegawai" type="text" />

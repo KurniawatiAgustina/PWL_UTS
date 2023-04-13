@@ -16,12 +16,8 @@ class FilmController extends Controller
     public function index(Request $request) {
 
         if ( $request->has('search')) { // jika request menangkap request berupa 'search'
-
-            // cari data berdasarkan nama yang dicari
             $data_film = FilmModel::where('nama', 'LIKE', '%' .$request->search. '%')->paginate(3);
         } else {
-
-            // jika tidak, tampilkan semua data
             $data_film = FilmModel::paginate(3);
         }
 
@@ -60,13 +56,8 @@ class FilmController extends Controller
 
         if ( $request->hasFile('gambar') ) {
 
-            // jika user menginputkan gambar, maka pindahkan gambar tersebut di sutau folder dengan nama aslis dari file gambasr tersebut
             $request->file('gambar')->move('foto_film/', $request->file('gambar')->getClientOriginalName());
-
-            // jika gamabr sudah berhasil didapatkan, ambil nama dari file gambar tersebut
             $data->gambar = $request->file('gambar')->getClientOriginalName();
-
-            // lalu simpan gambarnya ke dalam database
             $data->save();
         }
         return redirect('/film')->with('berhasil', 'Data Film Berhasil Ditambahkan');
