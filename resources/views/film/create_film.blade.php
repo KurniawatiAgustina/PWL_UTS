@@ -5,6 +5,7 @@
         <div class="card-header">
             <h3 class="card-title">Data Film</h3>
         </div>
+
         <div class="card-body">
             <form method="POST" action="{{ $url_form }}" enctype="multipart/form-data">
                 @csrf
@@ -70,11 +71,8 @@
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer">
             Footer
         </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
 @endsection
