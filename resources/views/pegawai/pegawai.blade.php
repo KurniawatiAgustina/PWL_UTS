@@ -23,16 +23,15 @@
                 </div>
             </div>
 
-            `{{-- buat kondisi jika pesan menerima sebuah seesion --}}
-            @if ( $pesan = Session::get('berhasil') )
+            {{-- buat kondisi jika pesan menerima sebuah seesion --}}
+            {{-- @if ( $pesan = Session::get('berhasil') ) --}}
 
-                {{-- taruh alert di sini --}}
-                <div class="alert alert-success mt-3" role="alert">
-                    {{-- tampilkan pesannya --}}
-                    <b> {{ $pesan }} </b>
-                </div>
+                {{-- <div class="alert alert-success mt-3" role="alert" --}}
+                    {{-- <b> {{ $pesan }} </b> --}}
+                {{-- </div> --}}
 
-            @endif
+            {{-- @endif --}}
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -52,6 +51,8 @@
                         @if ($data_pegawai->count() > 0)
                             @foreach($data_pegawai as $i => $pegawai)
                                 <tr>
+                                    <input type="hidden" class="delete-id" value="{{ $pegawai->id }}">
+                                    <input type="hidden" class="delete-name" value="{{ $pegawai->nama }}">
                                     <td>{{ $i + $data_pegawai->firstItem() }}</td>
                                     <td>{{ $pegawai->kode_pegawai }}</td>
                                     <td>{{ $pegawai->nama }}</td>
@@ -62,11 +63,11 @@
                                     <td>{{ $pegawai->tempat_lahir }}</td>
                                     <td>{{ $pegawai->alamat }}</td>
                                     <td class="">
-                                        <a href="{{ url('/pegawai/' . $pegawai->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{ url('/pegawai/' . $pegawai->id . '/edit') }}" class="btn btn-sm btn-warning">Ubah</a>
                                         <form class="d-inline" method="POST" action="{{ url('/pegawai/' . $pegawai->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" href="{{ url('/pegawai/' .$pegawai->id) }}" class="btn btn-sm btn-danger">Delete</button>
+                                            <button type="submit" href="{{ url('/pegawai/' . $pegawai->id) }}" class="btn btn-sm btn-danger btn-delete-pegawai" data-name="{{ $pegawai->nama }}">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -82,4 +83,56 @@
         </div>
     </div>
 </section>
+
+@include('sweetalert::alert')
+<script>
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.btn-delete-pegawai').click(function (e) {
+            e.preventDefault();
+
+            var id = $(this).closest("tr").find('.delete-id').val();
+            var name = $(this).closest("tr").find('.delete-name').val();
+
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    text: "Setelah dihapus, Data Pegawai " + name + " Tidak Bisa Dikembalikan!!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        var data = {
+                            "_token": $('input[name=_token]').val(),
+                            'id': id,
+                        };
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'pegawai/' + id,
+                            data: data,
+                            success: function (response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                        window.location = '/pegawai/';
+                    }
+                });
+        });
+
+    });
+
+</script>
 @endsection

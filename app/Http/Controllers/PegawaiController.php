@@ -58,7 +58,7 @@ class PegawaiController extends Controller
         ]);
 
         $data = PegawaiModel::create($request->all());
-        return redirect('/pegawai')->with('berhasil', 'Data Pegawai Berhasil Ditambahkan!');
+        return redirect('/pegawai')->withSuccess('Data Pegawai Berhasil Ditambahkan!');
     }
 
     /**
@@ -107,7 +107,7 @@ class PegawaiController extends Controller
         ]);
 
         $data = PegawaiModel::where('id', $id)->update($request->except('_token', '_method'));
-        return redirect('/pegawai')->with('berhasil', 'Data Pegawai Berhasil Dirubah!');
+        return redirect('/pegawai')->withSuccess('Data Pegawai Berhasil Dirubah!');
     }
 
     /**
@@ -119,7 +119,7 @@ class PegawaiController extends Controller
     public function destroy($id) {
 
         PegawaiModel::where('id', '=', $id)->delete();
-        return redirect('pegawai')->with('berhasil', 'Data Pegawai Berhasil Dihapus!');
+        return redirect('pegawai')->withSuccess('Data Pegawai Berhasil Dihapus!');
 
     }
 }

@@ -60,7 +60,7 @@ class FilmController extends Controller
             $data->gambar = $request->file('gambar')->getClientOriginalName();
             $data->save();
         }
-        return redirect('/film')->with('berhasil', 'Data Film Berhasil Ditambahkan');
+        return redirect('/film')->withSuccess('Data Film Berhasil Ditambahkan!');
     }
 
     /**
@@ -117,10 +117,14 @@ class FilmController extends Controller
             $data->gambar = $extention;
         }
 
-        $data->kode_film = $request->kode_film;
+        $data->nama = $request->nama;
+        $data->tgl_tayang = $request->tgl_tayang;
+        $data->jml_tayang = $request->jml_tayang;
+        $data->rating = $request->rating;
+        $data->harga = $request->harga;
 
         $data->update();
-        return redirect('/film')->with('berhasil', 'Data Film Berhasil Dirubah!');
+        return redirect('/film')->withSuccess('Data Film Berhasil Dirubah!');
     }
 
     /**
@@ -132,6 +136,6 @@ class FilmController extends Controller
     public function destroy($id) {
 
         FilmModel::where('id', $id)->delete();
-        return redirect('/film')->with('berhasil', 'Data Film Berhasil Dihapus!');
+        return redirect('/film')->withSuccess('Data Film Berhasil Dihapus');
     }
 }

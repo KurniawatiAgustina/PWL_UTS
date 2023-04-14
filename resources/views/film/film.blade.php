@@ -24,15 +24,15 @@
             </div>
 
             {{-- buat kondisi jika pesan menerima sebuah seesion --}}
-            @if ( $pesan = Session::get('berhasil') )
+            {{-- @if ( $pesan = Session::get('berhasil') ) --}}
 
                 {{-- taruh alert di sini --}}
-                <div class="alert alert-success mt-3" role="alert">
+                {{-- <div class="alert alert-success mt-3" role="alert">
                     {{-- tampilkan pesannya --}}
-                    <b> {{ $pesan }} </b>
-                </div>
+                    {{-- <b> {{ $pesan }} </b> --}}
+                {{-- </div>  --}}
 
-            @endif
+            {{-- @endif --}}
 
             <table class="table">
                 <thead>
@@ -53,10 +53,12 @@
                     @if ($data_film->count() > 0)
                         @foreach($data_film as $i => $film)
                             <tr>
+                                <input type="hidden" class="delete-id" value="{{ $film->id }}">
+                                <input type="hidden" class="delete-name" value="{{ $film->nama }}">
                                 <td>{{ $i + $data_film->firstItem() }}</td>
                                 <td>{{ $film->kode_film }}</td>
                                 <td>
-                                    <img src="{{ asset('foto_film/'.$film->gambar) }}" alt="" width="100px">
+                                    <img src="{{ asset('foto_film/' . $film->gambar) }}" alt="" width="100px">
                                 </td>
                                 <td>{{ $film->nama }}</td>
                                 <td>{{ $film->tgl_tayang }}</td>
@@ -64,11 +66,11 @@
                                 <td>{{ $film->rating }}</td>
                                 <td>{{ $film->harga }}</td>
                                 <td class="">
-                                    <a href="{{ url('/film/' . $film->id . '/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ url('/film/' . $film->id . '/edit') }}" class="btn btn-sm btn-warning">Ubah</a>
                                     <form class="d-inline" method="POST" action="{{ url('/film/' . $film->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" href="{{ url('/film/' .$film->id) }}" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" href="{{ url('/film/' .$film->id) }}" class="btn btn-sm btn-danger delete btn-delete-pegawai">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -86,4 +88,56 @@
         </div>
     </div>
 </section>
+
+@include('sweetalert::alert')
+<script>
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.btn-delete-pegawai').click(function (e) {
+            e.preventDefault();
+
+            var id = $(this).closest("tr").find('.delete-id').val();
+            var name = $(this).closest("tr").find('.delete-name').val();
+
+            swal({
+                    title: "Apakah Anda Yakin?",
+                    text: "Setelah dihapus, Data Film " + name + " Tidak Bisa Dikembalikan!!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        var data = {
+                            "_token": $('input[name=_token]').val(),
+                            'id': id,
+                        };
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'film/' + id,
+                            data: data,
+                            success: function (response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                        window.location = '/film/';
+                    }
+                });
+        });
+
+    });
+
+</script>
 @endsection
