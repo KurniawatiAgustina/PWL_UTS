@@ -58,8 +58,7 @@ class LoginController extends Controller
         return 'username';
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
         $this->guard()->logout();
 
         $request->session()->invalidate();
